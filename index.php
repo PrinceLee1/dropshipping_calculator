@@ -7,7 +7,7 @@ $calcVisitors = $amount / $profitMargin;
 $calcOrders = $days * $conversionRT / 100 ;
 $attract = $amount * $conversionRT;
 $totalOrder = $days * $profitMargin;
-$earnings = abs($amount - $attract);
+$sales = abs($amount - $attract);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,10 +23,16 @@ $earnings = abs($amount - $attract);
 </head>
 <style>
 
-@media screen and width(480px){
-    .card{
-        margin-right:-100px
-    }
+@media screen and (max-width:480px){
+   input,button{
+       margin-top:15px
+   }
+   .in,.dollar,.calc{
+       display:block
+   }
+   .calc{
+       margin-left:70px
+   }
 }
 body{
     background-color: #f0f4f7;
@@ -37,9 +43,32 @@ body{
 }
 .container-fluid{
     background:#fff;
-    padding:35px;
-    margin-top:90px;
-    margin-bottom:-20px
+    padding:20px;
+    margin-top:80px;
+}
+.assump{
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-family: ProximaNova-Regular;
+    font-size: 16px;
+    margin-left:28px
+}
+.note{
+    margin-left:25px;
+    color: #2e4257;
+    font-family: ProximaNova-Regular,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+li{
+    list-style: disc;
+    margin-left: 20px;
+    display: list-item;
+    text-align: -webkit-match-parent;
+    color: #2e4257;
+    font-family: ProximaNova-Regular,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
 }
 .header{
     color: #202e3c;
@@ -48,7 +77,7 @@ body{
 .card{
     max-width:900px;
     padding:20px;
-    margin-left:100px
+    /* margin-left:100px */
 }
 button{
     background-color:#27B7D7;
@@ -60,6 +89,7 @@ button{
 p{
     font-size: 22px;
     margin: 20px 0 30px;
+    color: #2e4257;
 }
 .error{
     color:red
@@ -100,14 +130,6 @@ p{
     color:#27b7d7
 
 }
-.assump{
-    font-family: ProximaNova-Regular;
-    font-size:16px;
-    margin-left:80px
-}
-ul,.note{
-    margin-left:60px
-}
 </style>
 <body>
 <div class="container">
@@ -118,23 +140,28 @@ This tool will tell you how many visitors you need to attract to your store to h
   <div class="card-body">
   <form action="" method="POST">
     <div class="col-md-12">
-    <label for="Amount"><b>My goal is to earn</b></label> <b>$</b>
-    <input type="number" name="amount" required > <b>in</b>
+    <label for="Amount"><b>My goal is to earn</b></label> <b class="dollar">$</b>
+    <input type="number" name="amount" required > <b class="in">in</b>
     <input type="number"  name="days" required>
    
-    <label for="customer"><b>days</b></label>
-    <button type="submit" class="">Calculate</button>
+    <label for="customer"><b class="days">days</b></label>
+    <button type="submit" class="calc">Calculate</button>
     </div>
     </form>
 <?php 
 if(isset($amount)){
-    echo "<hr><div class='text-center result'>You need <b>$calcVisitors</b> visitors and  <b>$calcOrders</b> orders daily</div>";
-    echo "<div class='text-center'> Overall you'll need to  attract <b>$attract</b> visitors  to your store or get <b>$totalOrder</b> orders </div>";
-    echo "<div class='text-center'>Oh, and by the way, you’ll make <b>$$earnings.00</b> in sales! </div>";
-     echo "</div>";
- echo "</div>";
- echo "</div>";
-echo "<div class='container-fluid'>";
+    echo "<hr><div class='text-center result'>You need <b>$calcVisitors</b> visitors and  <b>$calcOrders</b> orders daily.</div>";
+    echo "<div class='text-center'> Overall you'll need to  attract <b>$attract</b> visitors  to your store or get <b>$totalOrder</b> orders.</div>";
+    echo "<div class='text-center'>Oh, and by the way, you’ll make <b>$$sales.00</b> in sales! </div>";
+
+    }
+?>
+  </div>
+</div>
+</div>
+<?php 
+if(isset($amount)){
+    echo "<div class='container-fluid'>";
  echo "<p class='assump'><b>These calculations are based on the following assumptions:</b></p>";
  echo "<ul>";
  echo "<li>on average, out of every 100 visitors to your store 2 people will place an order</li>";
@@ -144,15 +171,11 @@ echo "<div class='container-fluid'>";
  echo "</ul>";
  echo "<div class='note'>Note: Earnings are calculated by taking your sales and subtracting what you pay to your supplier and what you pay for advertising your store.</div>";
  echo "</div>";
-    }
-
-
-
- 
+}
 ?>
 <div class="start">
 <h3 class="text-center"><b>Start using Oberlo today</b></h3>
-<div class="text-center">All accounts have access to the forever free Starter Plan<div>
+<div class="text-center">All accounts have access to the forever free Starter Plan.<div>
 <button type="button" class="text-center signup">Sign Up Free</button>
 </div>
 </body>
